@@ -1,0 +1,29 @@
+.navigation {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.75rem 0;
+	border-bottom: 1px solid #d8d8d8;
+}
+
+.navigation__logo {
+	font-size: 1.15rem;
+	font-weight: 700;
+	color: #1f2937;
+}
+
+.navigation__links {
+	display: flex;
+	gap: 1rem;
+}
+
+.navigation__link {
+	color: #4b5563;
+}
+
+.navigation__link_active {
+	color: #0f172a;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
