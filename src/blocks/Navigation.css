@@ -1,29 +1,45 @@
 .navigation {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-	padding: 0.75rem 0;
-	border-bottom: 1px solid #d8d8d8;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #d8d8d8;
 }
 
 .navigation__logo {
-	font-size: 1.15rem;
-	font-weight: 700;
-	color: #1f2937;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .navigation__links {
-	display: flex;
-	gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
-.navigation__link {
-	color: #4b5563;
+.navigation__home {
+  color: #ffffff;
+  text-decoration: none;
+  padding-bottom: 6px;
+  font-size: 18px;
+}
+
+.navigation__signin {
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1.2;
+  padding: 4px 12px;
+  border: 1px solid #ffffff;
+  border-radius: 9999px;
+  font-size: 18px;
+  width: 100px;
+  text-align: center;
 }
 
 .navigation__link_active {
-	color: #0f172a;
-	text-decoration: underline;
-	text-underline-offset: 4px;
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }

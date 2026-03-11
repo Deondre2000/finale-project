@@ -1,7 +1,8 @@
-import { Route, Routes } from 'react-router-dom'
-import About from './About'
-import Navigation from './Navigation'
-import '../blocks/App.css'
+import { Route, Routes } from "react-router-dom";
+import About from "./About";
+import Navigation from "./Navigation";
+import Header from "./Header";
+import "../blocks/App.css";
 
 function HomePage() {
   return (
@@ -9,7 +10,7 @@ function HomePage() {
       <h1>Main Page</h1>
       <p>Welcome to the project&apos;s home route.</p>
     </section>
-  )
+  );
 }
 
 function App() {
@@ -17,13 +18,14 @@ function App() {
     <div className="app">
       <Navigation />
       <main className="app__content">
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
