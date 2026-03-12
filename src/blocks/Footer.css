@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+  justify-content: space-between;
+  
+}
+.footer__text {
+  width: 433px;
+  height: 22px;
+  color: #b6bcbf;
+  z-index: 2;
+}

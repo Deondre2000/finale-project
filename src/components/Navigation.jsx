@@ -3,7 +3,7 @@ import "../blocks/Navigation.css";
 
 function Navigation() {
   return (
-    <header className="navigation">
+    <div className="navigation">
       <NavLink to="/" className="navigation__logo">
         News Explorer
       </NavLink>
@@ -26,7 +26,7 @@ function Navigation() {
           Sign In
         </NavLink>
       </nav>
-    </header>
+    </div>
   );
 }
 

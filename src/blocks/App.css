@@ -1,12 +1,28 @@
 .app {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
+  position: relative;
+}
+
+.app__content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .page {
   border: 1px solid #d8d8d8;
   border-radius: 10px;
-  padding: 1.5rem;
   background-color: #ffffff;
   text-align: left;
+}
+
+.app__image {
+  width: 100vw;
+  height: 50vh;
+  z-index: -1;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

@@ -1,28 +1,24 @@
 import { Route, Routes } from "react-router-dom";
 import About from "./About";
-import Navigation from "./Navigation";
 import Header from "./Header";
 import "../blocks/App.css";
+import appImage from "../assets/header.jpg";
+import Footer from "./Footer";
 
-function HomePage() {
-  return (
-    <section className="page">
-      <h1>Main Page</h1>
-      <p>Welcome to the project&apos;s home route.</p>
-    </section>
-  );
-}
+function HomePage() {}
 
 function App() {
   return (
     <div className="app">
-      <Navigation />
+      <img src={appImage} alt="News" className="app__image" />
       <main className="app__content">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
         </Routes>
+        <About />
+        <Footer />
       </main>
     </div>
   );
