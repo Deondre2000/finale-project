@@ -3,11 +3,35 @@
   flex-direction: row;
   margin-top: auto;
   justify-content: space-between;
-  
+  z-index: 1;
 }
 .footer__text {
   width: 433px;
   height: 22px;
   color: #b6bcbf;
-  z-index: 2;
+}
+
+.footer__home {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #1a1b22;
+}
+
+.footer__about {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #1a1b22;
+}
+
+.footerlink {
+  width: 24px;
+  height: 24px;
 }

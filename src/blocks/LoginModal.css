@@ -1,0 +1,79 @@
+.login-modal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 430px;
+  height: 380px;
+  opacity: 1;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 34px 36px 28px 36px;
+}
+
+.login-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: black;
+}
+
+.login-modal__title {
+  margin: 0 0 22px 0;
+  font-size: 24px;
+  color: black;
+}
+
+.login-modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-modal__label {
+  margin-bottom: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  color: blue;
+}
+
+.login-modal__input {
+  margin-bottom: 31px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.login-modal__button {
+  padding: 21.5px;
+  margin-top: 16px;
+  font-size: 16px;
+  background: #2f71e5;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-modal__button:hover {
+  background-color: #0056b3;
+}
+
+.login-modal__button-signup {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+}
+
+.login-modal__button-signup:hover {
+  color: white;
+}
+
+.login-modal__signup-text {
+  color: black;
+}

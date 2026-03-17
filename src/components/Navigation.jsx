@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "../blocks/Navigation.css";
 
-function Navigation() {
+function Navigation({ onSignInClick }) {
   return (
     <div className="navigation">
       <NavLink to="/" className="navigation__logo">
@@ -17,14 +17,9 @@ function Navigation() {
         >
           Home
         </NavLink>
-        <NavLink
-          to="/signin"
-          className={({ isActive }) =>
-            `navigation__signin${isActive ? " navigation__link_active" : ""}`
-          }
-        >
+        <button type="button" className="navigation__signin" onClick={onSignInClick}>
           Sign In
-        </NavLink>
+        </button>
       </nav>
     </div>
   );

@@ -30,13 +30,13 @@
   color: #ffffff;
   text-decoration: none;
   display: inline-block;
-  line-height: 1.2;
   border: 1px solid #ffffff;
   border-radius: 9999px;
-  font-size: 18px;
+  font-size: 17px;
   width: 100px;
   text-align: center;
   margin: 30px 116px 26px 0;
+  background-color: transparent;
 }
 
 .navigation__link_active {
