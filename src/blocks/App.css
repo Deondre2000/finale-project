@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  color: #1a1b22;
+}
+
 .app {
   width: 100vw;
   min-height: 100vh;
@@ -15,15 +26,4 @@
   border-radius: 10px;
   background-color: #ffffff;
   text-align: left;
-}
-
-.app__image {
-  width: 100vw;
-  height: 50vh;
-  z-index: -1;
-  border-radius: 10px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.5;
 }

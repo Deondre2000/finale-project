@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../blocks/LoginModal.css";
 
-function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
+function LoginModal({ isOpen, onClose, onSwitchToRegister, onLogin }) {
+  const [email, setEmail] = useState("");
+
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -31,10 +33,16 @@ function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
         onMouseDown={(event) => event.stopPropagation()}
       >
         <button type="button" className="login-modal__close" onClick={onClose}>
-          x
+          X
         </button>
         <h2 className="login-modal__title">Sign In</h2>
-        <form className="login-modal__form">
+        <form
+          className="login-modal__form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onLogin(email);
+          }}
+        >
           <label className="login-modal__label" htmlFor="login-email">
             Email
           </label>
@@ -44,6 +52,8 @@ function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
             className="login-modal__input"
             placeholder="Email"
             autoComplete="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
             required
           />
           <label className="login-modal__label" htmlFor="login-password">

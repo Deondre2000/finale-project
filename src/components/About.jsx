@@ -1,5 +1,5 @@
 import "../blocks/About.css";
-import personImage from "../assets/person.jpg";
+import personImage from "../assets/resume-pic.jpg";
 
 function About() {
   return (

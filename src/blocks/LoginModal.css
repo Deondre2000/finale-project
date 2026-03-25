@@ -1,13 +1,20 @@
 .login-modal {
   position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  user-select: none;
+}
+
+.login-modal__content {
+  position: relative;
   display: flex;
   flex-direction: column;
-  top: 33%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 430px;
-  height: 380px;
-  opacity: 1;
+  height: auto;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 34px 36px 28px 36px;
@@ -15,13 +22,17 @@
 
 .login-modal__close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: -52px;
+  right: -49px;
   border: none;
   background: transparent;
-  font-size: 18px;
+  font-size: 22px;
+  font-family: inherit;
   cursor: pointer;
-  color: black;
+  color: white;
+  height: 40px;
+  user-select: none;
+  caret-color: transparent;
 }
 
 .login-modal__title {
@@ -39,7 +50,7 @@
   margin-bottom: 9px;
   font-size: 14px;
   font-weight: 500;
-  color: blue;
+  color: #2f71e5;
 }
 
 .login-modal__input {
@@ -48,30 +59,41 @@
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
+  opacity: 0.2;
 }
 
 .login-modal__button {
   padding: 21.5px;
   margin-top: 16px;
   font-size: 16px;
+  font-family: inherit;
   background: #2f71e5;
   color: white;
   border: none;
+  border-radius: 9999px;
   cursor: pointer;
+  transition: background-color 0.25s ease;
+  user-select: none;
+  caret-color: transparent;
 }
 
 .login-modal__button:hover {
-  background-color: #0056b3;
+  background: #535bf2;
 }
 
 .login-modal__button-signup {
   background-color: transparent;
   color: #007bff;
   border: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  user-select: none;
+  caret-color: transparent;
 }
 
 .login-modal__button-signup:hover {
-  color: white;
+  color: #535bf2;
 }
 
 .login-modal__signup-text {
