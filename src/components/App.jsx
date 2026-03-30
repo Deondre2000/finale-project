@@ -19,6 +19,7 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState("");
+  const [currentSearchKeyword, setCurrentSearchKeyword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [savedArticles, setSavedArticles] = useState([]);
   const [currentUser, setCurrentUser] = useState("User");
@@ -62,16 +63,19 @@ function App() {
   };
 
   const isArticleSaved = (article) => {
-    return savedArticles.some((savedArticle) => savedArticle.url === article.url);
+    return savedArticles.some(
+      (savedArticle) => savedArticle.url === article.url,
+    );
   };
   /* bookmark logic */
-  const handleToggleBookmark = (article) => {
+  const handleToggleBookmark = (article, keyword) => {
     if (!article?.url) return;
-
 
     /* Ssaved artical logic*/
     setSavedArticles((prev) => {
-      const isSaved = prev.some((savedArticle) => savedArticle.url === article.url);
+      const isSaved = prev.some(
+        (savedArticle) => savedArticle.url === article.url,
+      );
 
       if (isSaved) {
         return prev.filter((savedArticle) => savedArticle.url !== article.url);
@@ -82,6 +86,7 @@ function App() {
         {
           ...article,
           source: article.source?.name || article.source,
+          keyword: keyword || article.keyword || "",
         },
       ];
     });
@@ -90,6 +95,8 @@ function App() {
   /* search Bar api logic */
   async function handleSearch(query) {
     if (!query.trim()) return;
+
+    setCurrentSearchKeyword(query.trim());
 
     try {
       setIsSearching(true);
@@ -156,32 +163,38 @@ function App() {
           onClose={closeRegisterModal}
           onSwitchToLogin={openLoginFromRegister}
         />
-        {location.pathname === "/" && (isSearching || searchError || articles.length > 0) && (
-          <div className="news-card">
-            <h1 className="news-card__header">Search Results</h1>
+        {location.pathname === "/" &&
+          (isSearching || searchError || articles.length > 0) && (
+            <div className="news-card">
+              <h1 className="news-card__header">Search Results</h1>
 
-            {isSearching && <Preloader />}
-            {searchError && <p className="news-card__error">{searchError}</p>}
+              {isSearching && <Preloader />}
+              {searchError && <p className="news-card__error">{searchError}</p>}
 
-            {!isSearching &&
-              !searchError &&
-              articles.map((article) => (
-                <NewsCard
-                  key={article.url || `${article.title}-${article.publishedAt}`}
-                  title={article.title}
-                  description={article.description}
-                  imageUrl={article.urlToImage}
-                  publishedAt={article.publishedAt}
-                  author={article.author}
-                  source={article.source?.name}
-                  isLoggedIn={isLoggedIn}
-                  onLoginRequired={openLoginModal}
-                  isBookmarked={isArticleSaved(article)}
-                  onToggleBookmark={() => handleToggleBookmark(article)}
-                />
-              ))}
-          </div>
-        )}
+              {!isSearching &&
+                !searchError &&
+                articles.map((article) => (
+                  <NewsCard
+                    key={
+                      article.url || `${article.title}-${article.publishedAt}`
+                    }
+                    title={article.title}
+                    description={article.description}
+                    imageUrl={article.urlToImage}
+                    publishedAt={article.publishedAt}
+                    author={article.author}
+                    source={article.source?.name}
+                    url={article.url}
+                    isLoggedIn={isLoggedIn}
+                    onLoginRequired={openLoginModal}
+                    isBookmarked={isArticleSaved(article)}
+                    onToggleBookmark={() =>
+                      handleToggleBookmark(article, currentSearchKeyword)
+                    }
+                  />
+                ))}
+            </div>
+          )}
         {location.pathname !== "/saved-news" && <About />}
         <Footer />
       </main>

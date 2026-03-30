@@ -21,6 +21,17 @@ function SavedNewsPage({
     onSignOut();
     setIsDropdownOpen(false);
   };
+/* key words logic */
+  const uniqueKeywords = Array.from(
+    new Set(
+      savedArticles
+        .map((article) => article.keyword?.trim())
+        .filter(Boolean),
+    ),
+  );
+  const visibleKeywords = uniqueKeywords.slice(0, 2).join(", ");
+  const hasMoreKeywords = uniqueKeywords.length > 2;
+  const remainingKeywordCount = uniqueKeywords.length - 2;
 
   return (
     <div className="saved-news-page">
@@ -60,7 +71,13 @@ function SavedNewsPage({
           <h1 className="saved-news-page__header">
             {`User, you have ${savedArticles.length} saved article${savedArticles.length !== 1 ? "s" : ""}`}
           </h1>
-          <p className="saved-news-page__description">By keywords: </p>
+          <p className="saved-news-page__description">
+            By keywords:
+            {visibleKeywords ? ` ${visibleKeywords}` : " none yet"}
+            {hasMoreKeywords
+              ? ` and ${remainingKeywordCount} ${remainingKeywordCount === 1 ? "other" : "others"}`
+              : ""}
+          </p>
         </div>
       </div>
 
@@ -76,6 +93,8 @@ function SavedNewsPage({
             title={article.title}
             description={article.description}
             imageUrl={article.urlToImage || article.imageUrl}
+            url={article.url}
+            keyword={article.keyword}
             publishedAt={article.publishedAt}
             author={article.author}
             source={article.source}

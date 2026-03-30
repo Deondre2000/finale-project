@@ -69,7 +69,11 @@ function Navigation({ onSignInClick, isLoggedIn, onSignOut }) {
             onClick={handleSignOutClick}
           >
             <span>User</span>
-            <img src={logoutIcon} alt="Log out" className="navigation__logout-icon" />
+            <img
+              src={logoutIcon}
+              alt="Log out"
+              className="navigation__logout-icon"
+            />
           </button>
         ) : (
           <button
