@@ -5,6 +5,7 @@ import "../blocks/SavedNewsPage.css";
 import logoutIcon from "../assets/logout.png";
 
 function SavedNewsPage({
+  currentUser,
   savedArticles,
   isArticleSaved,
   onToggleBookmark,
@@ -21,12 +22,10 @@ function SavedNewsPage({
     onSignOut();
     setIsDropdownOpen(false);
   };
-/* key words logic */
+  /* key words logic */
   const uniqueKeywords = Array.from(
     new Set(
-      savedArticles
-        .map((article) => article.keyword?.trim())
-        .filter(Boolean),
+      savedArticles.map((article) => article.keyword?.trim()).filter(Boolean),
     ),
   );
   const visibleKeywords = uniqueKeywords.slice(0, 2).join(", ");
@@ -36,8 +35,15 @@ function SavedNewsPage({
   return (
     <div className="saved-news-page">
       <div className="saved-news-page__banner">
-        <div className={`saved-news-page__nav ${isDropdownOpen ? "saved-news-page_open" : ""}`}>
-          <span className={`saved-news-page__logo ${isDropdownOpen ? "active" : ""}`}>NewsExplorer</span>
+        <div
+          className={`saved-news-page__nav ${isDropdownOpen ? "saved-news-page_open" : ""}`}
+        >
+          <Link
+            to="/"
+            className={`saved-news-page__logo ${isDropdownOpen ? "saved-news-page__logo_active" : ""}`}
+          >
+            NewsExplorer
+          </Link>
           <button
             className="saved-news-page__menu-button"
             onClick={toggleDropdown}
@@ -55,8 +61,11 @@ function SavedNewsPage({
               Home
             </Link>
             <div className="saved-news-page__saved-tab">Saved articles</div>
-            <button className="saved-news-page__user-btn" onClick={handleSignOutClick}>
-              <span>User</span>
+            <button
+              className="saved-news-page__user-btn"
+              onClick={handleSignOutClick}
+            >
+              <span>{currentUser || "User"}</span>
               <img
                 src={logoutIcon}
                 alt="Log out"
@@ -69,7 +78,7 @@ function SavedNewsPage({
         <div className="saved-news-page__user-info">
           <p className="saved-news-page__saved-articles">Saved articles</p>
           <h1 className="saved-news-page__header">
-            {`User, you have ${savedArticles.length} saved article${savedArticles.length !== 1 ? "s" : ""}`}
+            {`${currentUser || "User"}, you have ${savedArticles.length} saved article${savedArticles.length !== 1 ? "s" : ""}`}
           </h1>
           <p className="saved-news-page__description">
             By keywords:
@@ -81,7 +90,7 @@ function SavedNewsPage({
         </div>
       </div>
 
-      <div className="saved-news-page__articles">
+      <section className="saved-news-page__articles">
         {savedArticles.length === 0 && (
           <p className="saved-news-page__empty">
             Start exploring and bookmark articles you want to come back to!
@@ -102,9 +111,10 @@ function SavedNewsPage({
             onLoginRequired={onLoginRequired}
             isBookmarked={isArticleSaved(article)}
             onToggleBookmark={() => onToggleBookmark(article)}
+            showDeleteIcon={true}
           />
         ))}
-      </div>
+      </section>
     </div>
   );
 }

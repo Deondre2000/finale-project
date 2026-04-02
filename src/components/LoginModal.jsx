@@ -1,61 +1,67 @@
 import { useEffect, useState } from "react";
-import "../blocks/LoginModal.css";
+import ModalWithForm from "./ModalWithForm";
 
 function LoginModal({ isOpen, onClose, onSwitchToRegister, onLogin }) {
   const [email, setEmail] = useState("");
+  const [isEmailTrue, setIsEmailTrue] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const showEmailError = isEmailTrue && email.length > 0 && !isEmailValid;
+  const loginErrorMessage = showEmailError
+    ? "Invalid email address"
+    : submitError;
 
   useEffect(() => {
     if (!isOpen) {
-      return;
+      setEmail("");
+      setIsEmailTrue(false);
+      setSubmitError("");
     }
+  }, [isOpen]);
 
-    const handleEscClose = (event) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleEscClose);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscClose);
-    };
-  }, [isOpen, onClose]);
-
-  if (!isOpen) {
-    return null;
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setIsEmailTrue(true);
+    setSubmitError("");
+    if (!isEmailValid) return;
+    const didLogin = await onLogin(email);
+    if (!didLogin) setSubmitError("This email is not available");
   }
 
   return (
-    <div className="login-modal" onMouseDown={onClose}>
-      <div
-        className="login-modal__content"
-        onMouseDown={(event) => event.stopPropagation()}
-      >
-        <button type="button" className="login-modal__close" onClick={onClose}>
-          X
-        </button>
-        <h2 className="login-modal__title">Sign In</h2>
-        <form
-          className="login-modal__form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            onLogin(email);
-          }}
-        >
+    <ModalWithForm
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Sign In"
+      onSubmit={handleSubmit}
+    >
           <label className="login-modal__label" htmlFor="login-email">
             Email
           </label>
           <input
             id="login-email"
             type="email"
-            className="login-modal__input"
+            className={`login-modal__input ${showEmailError ? "login-modal__input_error" : ""}`}
             placeholder="Email"
             autoComplete="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => {
+              setEmail(event.target.value);
+              setSubmitError("");
+            }}
+            onBlur={() => setIsEmailTrue(true)}
+            aria-invalid={showEmailError}
             required
           />
+          {loginErrorMessage && (
+            <span
+              className="login-modal__error login-modal__submit-error"
+              role="alert"
+            >
+              {loginErrorMessage}
+            </span>
+          )}
           <label className="login-modal__label" htmlFor="login-password">
             Password
           </label>
@@ -77,9 +83,7 @@ function LoginModal({ isOpen, onClose, onSwitchToRegister, onLogin }) {
           >
             <span className="login-modal__signup-text">or</span> Sign Up
           </button>
-        </form>
-      </div>
-    </div>
+    </ModalWithForm>
   );
 }
 

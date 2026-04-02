@@ -3,7 +3,14 @@ import { useState } from "react";
 import "../blocks/Navigation.css";
 import logoutIcon from "../assets/logout.png";
 
-function Navigation({ onSignInClick, isLoggedIn, onSignOut }) {
+function Navigation({
+  onSignInClick,
+  isLoggedIn,
+  currentUser,
+  onSignOut,
+  isModalOpen,
+  onModalClose,
+}) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -21,22 +28,28 @@ function Navigation({ onSignInClick, isLoggedIn, onSignOut }) {
   };
 
   return (
-    <div className={`navigation ${isDropdownOpen ? "navigation_open" : ""}`}>
+    <nav className={`navigation ${isDropdownOpen ? "navigation_open" : ""}`}>
       <NavLink
         to="/"
-        className={`navigation__logo ${isDropdownOpen ? "active" : ""}`}
+        className={`navigation__logo ${isDropdownOpen ? "navigation__logo_active" : ""}`}
       >
         News Explorer
       </NavLink>
       <button
         className="navigation__menu-button"
-        onClick={toggleDropdown}
+        onClick={() => {
+          if (isModalOpen) {
+            onModalClose();
+          } else {
+            toggleDropdown();
+          }
+        }}
         aria-label={
-          isDropdownOpen ? "Close navigation menu" : "Open navigation menu"
+          isDropdownOpen || isModalOpen ? "Close" : "Open navigation menu"
         }
         type="button"
       >
-        {isDropdownOpen ? "X" : "="}
+        {isDropdownOpen || isModalOpen ? "X" : "="}
       </button>
       <nav
         className={`navigation__links ${isDropdownOpen ? "navigation__links_open" : ""}`}
@@ -68,7 +81,7 @@ function Navigation({ onSignInClick, isLoggedIn, onSignOut }) {
             className="navigation__user"
             onClick={handleSignOutClick}
           >
-            <span>User</span>
+            <span>{currentUser || "User"}</span>
             <img
               src={logoutIcon}
               alt="Log out"
@@ -85,7 +98,7 @@ function Navigation({ onSignInClick, isLoggedIn, onSignOut }) {
           </button>
         )}
       </nav>
-    </div>
+    </nav>
   );
 }
 

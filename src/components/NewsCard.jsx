@@ -4,6 +4,7 @@ import cardImage from "../assets/card.jpg";
 import unmarkedIcon from "../assets/unmarked.png";
 import hoveredIcon from "../assets/hovered.png";
 import markedIcon from "../assets/marked.png";
+import trashIcon from "../assets/trash.png";
 
 function NewsCard({
   title,
@@ -18,6 +19,7 @@ function NewsCard({
   onLoginRequired,
   isBookmarked,
   onToggleBookmark,
+  showDeleteIcon = false,
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -28,11 +30,13 @@ function NewsCard({
     }
     onToggleBookmark();
   };
-  const bookmark = isBookmarked
-    ? markedIcon
-    : isHovered
-      ? hoveredIcon
-      : unmarkedIcon;
+  const bookmark = showDeleteIcon
+    ? trashIcon
+    : isBookmarked
+      ? markedIcon
+      : isHovered
+        ? hoveredIcon
+        : unmarkedIcon;
 
   return (
     <div className="news-card__section">
@@ -54,7 +58,7 @@ function NewsCard({
         >
           <img
             src={bookmark}
-            alt="Bookmark"
+            alt={showDeleteIcon ? "Remove from saved" : "Bookmark"}
             className="news-card__bookmark-image"
           />
         </button>

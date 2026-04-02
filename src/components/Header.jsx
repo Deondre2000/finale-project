@@ -4,7 +4,7 @@ import "../blocks/Navigation.css";
 import appImage from "../assets/header.jpg";
 import { useState } from "react";
 
-function Header({ onSignInClick, onSearch, isLoggedIn, currentUser, onSignOut }) {
+function Header({ onSignInClick, onSearch, isLoggedIn, currentUser, onSignOut, isModalOpen, onModalClose }) {
   /* search bar logic */
   const [searchQuery, setSearchQuery] = useState("");
   function handleSubmit(e) {
@@ -20,6 +20,8 @@ function Header({ onSignInClick, onSearch, isLoggedIn, currentUser, onSignOut })
         isLoggedIn={isLoggedIn}
         currentUser={currentUser}
         onSignOut={onSignOut}
+        isModalOpen={isModalOpen}
+        onModalClose={onModalClose}
       />
       <h1 className="header__title">What's going on in the world?</h1>
       <p className="header__subtitle">

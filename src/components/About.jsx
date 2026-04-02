@@ -3,11 +3,11 @@ import personImage from "../assets/resume-pic.jpg";
 
 function About() {
   return (
-    <section className="About">
-      <img src={personImage} alt="Author" className="About__image" />
-      <div className="About__info">
-        <h1 className="About__title">About The Author</h1>
-        <p className="About__description">
+    <section className="about">
+      <img src={personImage} alt="Author" className="about__image" />
+      <div className="about__info">
+        <h1 className="about__title">About The Author</h1>
+        <p className="about__description">
           I am a 25-year-old Navy veteran, an electrician, and a student at
           TripleTen. I enjoy building creative websites and turning fresh ideas
           into practical, user friendly solutions. Through TripleTen, I have

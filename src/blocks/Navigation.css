@@ -14,11 +14,11 @@
   color: #ffffff;
   margin: 30px 0 26px 0;
   margin-left: 104px;
+  text-decoration: none;
 }
 
 .navigation__links {
   display: flex;
-  align-items: center;
 }
 
 .navigation__menu-button {
@@ -102,10 +102,6 @@
   padding: 0 16px;
 }
 
-.navigation__user:hover {
-  color: #1a1a1a;
-}
-
 .navigation__logout-icon {
   width: 16px;
   height: 16px;
@@ -186,7 +182,7 @@
     width: auto;
   }
 
-  .navigation__logo.active {
+  .navigation__logo.navigation__logo_active {
     margin: 16px auto 16px 16px;
   }
 
