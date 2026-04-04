@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewsCard from "./NewsCard";
 import "../blocks/SavedNewsPage.css";
 import logoutIcon from "../assets/logout.png";
@@ -13,6 +13,11 @@ function SavedNewsPage({
   onSignOut,
 }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [visibleCardsCount, setVisibleCardsCount] = useState(3);
+
+  useEffect(() => {
+    setVisibleCardsCount((prevCount) => Math.min(Math.max(prevCount, 3), savedArticles.length || 3));
+  }, [savedArticles.length]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -22,6 +27,14 @@ function SavedNewsPage({
     onSignOut();
     setIsDropdownOpen(false);
   };
+
+  const handleShowMore = () => {
+    setVisibleCardsCount(savedArticles.length);
+  };
+
+  const visibleSavedArticles = savedArticles.slice(0, visibleCardsCount);
+  const hasMoreSavedArticles = savedArticles.length > visibleCardsCount;
+
   /* key words logic */
   const uniqueKeywords = Array.from(
     new Set(
@@ -96,7 +109,7 @@ function SavedNewsPage({
             Start exploring and bookmark articles you want to come back to!
           </p>
         )}
-        {savedArticles.map((article) => (
+        {visibleSavedArticles.map((article) => (
           <NewsCard
             key={article.url || `${article.title}-${article.publishedAt}`}
             title={article.title}
@@ -115,6 +128,18 @@ function SavedNewsPage({
           />
         ))}
       </section>
+
+      {hasMoreSavedArticles && (
+        <div className="saved-news-page__actions">
+          <button
+            type="button"
+            className="saved-news-page__show-more"
+            onClick={handleShowMore}
+          >
+            Show more
+          </button>
+        </div>
+      )}
     </div>
   );
 }

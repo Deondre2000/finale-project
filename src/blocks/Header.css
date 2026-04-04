@@ -92,7 +92,12 @@
 }
 
 .header__search-button:hover {
-  background: #535bf2;
+  background: #347eff;
+}
+
+.header__search-button:active {
+  background: #2a65cc;
+  border: none;
 }
 
 @media (max-width: 640px) {
