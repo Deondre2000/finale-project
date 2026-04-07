@@ -1,0 +1,119 @@
+.login-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  user-select: none;
+}
+
+.login-modal__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 430px;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 34px 36px 28px 36px;
+}
+
+.login-modal__close {
+  position: absolute;
+  top: -52px;
+  right: -49px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  font-family: inherit;
+  cursor: pointer;
+  color: white;
+  height: 40px;
+  user-select: none;
+  caret-color: transparent;
+}
+
+.login-modal__title {
+  margin: 0 0 22px 0;
+  font-size: 24px;
+  color: black;
+}
+
+.login-modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-modal__label {
+  margin-bottom: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2f71e5;
+}
+
+.login-modal__input {
+  margin-bottom: 31px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  color: black;
+}
+
+.login-modal__input_error {
+  border-bottom-color: #ff4d4f;
+  opacity: 1;
+}
+
+.login-modal__error {
+  margin-top: -24px;
+  margin-bottom: 18px;
+  color: #ff4d4f;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.login-modal__button {
+  padding: 21.5px;
+  margin-top: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  background: #2f71e5;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  user-select: none;
+  caret-color: transparent;
+  box-shadow: 0px 5px 15px 0px #0e1a3933;
+}
+
+.login-modal__button:hover {
+  background: #535bf2;
+}
+
+.login-modal__button-signup {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  user-select: none;
+  caret-color: transparent;
+  box-shadow: none;
+}
+
+.login-modal__signup-text {
+  color: black;
+}
+
+@media (max-width: 800px) {
+  .login-modal__content {
+    height: 890px;
+    top: 100px;
+  }
+}

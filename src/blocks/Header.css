@@ -1,0 +1,124 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 100vw;
+  min-height: 320px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #1a1b22;
+  user-select: none;
+}
+
+.header__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  filter: brightness(45%);
+  z-index: 0;
+}
+
+.header .navigation {
+  position: relative;
+  z-index: 3;
+}
+
+.header__title {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  font-weight: 400;
+  font-size: 60px;
+  color: #ffffff;
+}
+
+.header__subtitle {
+  position: relative;
+  z-index: 1;
+  margin: 32px 0 122px 0;
+  font-size: 18px;
+  max-width: 640px;
+  color: #f3f3f3;
+}
+
+.header__search-bar {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.header__search-input {
+  width: 100%;
+  height: 56px;
+  padding: 10px 170px 10px 22px;
+  font-size: 16px;
+  border: none;
+  border-radius: 100px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: black;
+  margin-bottom: 48px;
+}
+
+.header__search-button {
+  position: absolute;
+  top: 27%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 140px;
+  height: 56px;
+  padding: 0 20px;
+  font-size: 16px;
+  background: #2f71e5;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  user-select: none;
+  caret-color: transparent;
+}
+
+.header__search-button:hover {
+  background: #347eff;
+}
+
+.header__search-button:active {
+  background: #2a65cc;
+  border: none;
+}
+
+@media (max-width: 640px) {
+  .header__title {
+    font-size: 36px;
+    margin: 0 16px 0 16px;
+  }
+
+  .header__subtitle {
+    margin: 16px 16px 122px 16px;
+  }
+  .header__search-input {
+    padding-right: 22px;
+    margin: 0;
+  }
+
+  .header__search-button {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 32px;
+  }
+}

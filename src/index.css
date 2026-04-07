@@ -1,0 +1,53 @@
+@font-face {
+	font-family: "Roboto Slab";
+	src: url("./vendor/roboto-slab-400-regular.woff2") format("woff2"),
+		url("./vendor/roboto-slab-400-regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Roboto Slab";
+	src: url("./vendor/roboto-slab-700.woff2") format("woff2"),
+		url("./vendor/roboto-slab-700.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: url("./vendor/roboto-400-regular.woff2") format("woff2"),
+		url("./vendor/roboto-400-regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("./vendor/inter-400-regular.woff2") format("woff2"),
+		url("./vendor/inter-400-regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+html,
+body,
+#root,
+button,
+input,
+textarea,
+select {
+	font-family: "Roboto Slab", serif;
+}
+
+.login-modal__label,
+.login-modal__input {
+	font-family: "Roboto", sans-serif;
+}
+
+.login-modal__input::placeholder {
+	font-family: "Inter", sans-serif;
+}
+
+
+
