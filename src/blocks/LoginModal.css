@@ -58,8 +58,8 @@
   font-size: 16px;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid black;
-  opacity: 0.2;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  color: black;
 }
 
 .login-modal__input_error {
@@ -105,10 +105,6 @@
   user-select: none;
   caret-color: transparent;
   box-shadow: none;
-}
-
-.login-modal__button-signup:hover {
-  color: #535bf2;
 }
 
 .login-modal__signup-text {

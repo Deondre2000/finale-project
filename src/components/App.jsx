@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import About from "./About";
 import Header from "./Header";
@@ -21,6 +21,19 @@ function HomePage({
   onToggleBookmark,
   currentSearchKeyword,
 }) {
+  const [visibleCardsCount, setVisibleCardsCount] = useState(3);
+
+  useEffect(() => {
+    setVisibleCardsCount(3);
+  }, [articles]);
+
+  const visibleArticles = articles.slice(0, visibleCardsCount);
+  const hasMoreArticles = articles.length > visibleCardsCount;
+
+  const handleShowMore = () => {
+    setVisibleCardsCount(articles.length);
+  };
+
   return (
     <>
       {(isSearching || searchError || articles.length > 0) && (
@@ -32,11 +45,9 @@ function HomePage({
 
           {!isSearching &&
             !searchError &&
-            articles.map((article) => (
+            visibleArticles.map((article) => (
               <NewsCard
-                key={
-                  article.url || `${article.title}-${article.publishedAt}`
-                }
+                key={article.url || `${article.title}-${article.publishedAt}`}
                 title={article.title}
                 description={article.description}
                 imageUrl={article.urlToImage}
@@ -52,6 +63,18 @@ function HomePage({
                 }
               />
             ))}
+
+          {!isSearching && !searchError && hasMoreArticles && (
+            <div className="news-card__actions">
+              <button
+                type="button"
+                className="news-card__more"
+                onClick={handleShowMore}
+              >
+                Show more
+              </button>
+            </div>
+          )}
         </div>
       )}
       <About />
@@ -103,7 +126,7 @@ function App() {
     if (!loginWithEmail(email, registeredEmails)) {
       return false;
     }
-
+    /* Login logic */
     const normalizedEmail = email?.trim().toLowerCase();
     const username =
       usernamesByEmail[normalizedEmail] ||
@@ -114,7 +137,7 @@ function App() {
     closeLoginModal();
     return true;
   };
-
+  /* Registration logic */
   const handleRegister = (registrationData) => {
     const email =
       typeof registrationData === "string"
@@ -155,7 +178,7 @@ function App() {
   const handleToggleBookmark = (article, keyword) => {
     if (!article?.url) return;
 
-    /* Ssaved artical logic*/
+    /* Saved article logic */
     setSavedArticles((prev) => {
       const isSaved = prev.some(
         (savedArticle) => savedArticle.url === article.url,

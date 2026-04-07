@@ -155,6 +155,12 @@
   caret-color: transparent;
 }
 
+.news-card__actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 @media (min-width: 801px) {
   .news-card {
     display: flex;
@@ -202,5 +208,9 @@
 
   .news-card__error {
     width: 100%;
+  }
+
+  .news-card__actions {
+    padding: 0 0 24px;
   }
 }

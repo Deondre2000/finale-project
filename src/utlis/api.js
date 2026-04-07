@@ -1,10 +1,12 @@
-const NEWS_API_BASE_URL = "https://newsapi.org/v2/everything";
+const NEWS_API_BASE_URL =
+  import.meta.env.MODE === "production"
+    ? "https://nomoreparties.co/news/v2/everything"
+    : "https://newsapi.org/v2/everything";
 const NEWS_API_KEY = "af7602ea7d934a89b20dd81517a72c05";
 
 export function normalizeEmail(email) {
   return email?.trim().toLowerCase() || "";
 }
-
 export function registerEmail(email, registeredEmails = []) {
   const normalizedEmail = normalizeEmail(email);
 
@@ -26,8 +28,7 @@ export function loginWithEmail(email, registeredEmails = []) {
   return (
     normalizedEmail.length > 0 && registeredEmails.includes(normalizedEmail)
   );
-}
-
+} /* API call to fetch news articles based on a search query */
 export async function getNewsByKeyword(query) {
   const trimmedQuery = query?.trim() || "";
 
@@ -46,4 +47,3 @@ export async function getNewsByKeyword(query) {
 
   return data.articles || [];
 }
-
